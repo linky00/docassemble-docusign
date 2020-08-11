@@ -249,6 +249,7 @@ class DocuSign:
             self.get_user_info()
             envelope = requests.post(self.extended_base_uri + '/envelopes', headers=self.authorization_header, json=request_json)
             envelope.raise_for_status()
+            log(envelope.text)
             return request_json, json.loads(envelope.text), envelope.status_code
         else:
             return request_json
